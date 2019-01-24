@@ -1,0 +1,16 @@
+{
+  "name": "kubernetes-security-slideshow",
+  "version": "0.1.0",
+  "description": "Kubernetes Security, Survival Guide",
+  "repository": "git@github.com:SkypLabs/kubernetes-security-slideshow.git",
+  "author": "Paul-Emmanuel Raoul <skyper@skyplabs.net>",
+  "license": "CC-BY-NC-4.0",
+  "private": true,
+  "dependencies": {
+    "gitgraph.js": "^1.11.4",
+    "reveal.js": "^3.6.0"
+  },
+  "scripts": {
+    "install": "./scripts/install.sh"
+  }
+}
