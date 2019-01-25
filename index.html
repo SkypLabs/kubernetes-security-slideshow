@@ -51,6 +51,37 @@
           </p>
         </section>
 
+        <section>
+          <section>
+            <h2>Kubernetes Architecture</h2>
+              <figure>
+                <img src="img/k8s-architecture.png" alt="Kubernetes Architecture" style="width: 600px">
+                <figcaption style="font-style: italic; font-size: .5em">Kubernetes Architecture - Reference: <a href="https://x-team.com/blog/introduction-kubernetes-architecture/">X-Team</a></figcaption>
+              </figure>
+          </section>
+
+          <section>
+            <h2>API Servers</h2>
+            <p class="fragment">Entry point for managing the cluster</p>
+            <p class="fragment">One per master node</p>
+          </section>
+
+          <section>
+            <h2>ETCd</h2>
+            <p class="fragment">Store cluster's configuration and state</p>
+            <p class="fragment">Service discovery</p>
+            <p class="fragment">Write access = root access on the whole cluster</p>
+          </section>
+
+          <section>
+            <h2>Kubelet</h2>
+            <p class="fragment">Bridge between worker nodes and the cluster logic</p>
+            <p class="fragment">One per worker node</p>
+            <p class="fragment">Takes care of managing the pods</p>
+            <p class="fragment">Has its own API</p>
+          </section>
+        </section>
+
       </div>
 
     </div>
