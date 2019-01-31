@@ -151,6 +151,53 @@
         </section>
 
         <section>
+          <section>
+            <h2>Helm</h2>
+            <p class="fragment">Package manager for Kubernetes</p>
+            <p class="fragment">Package = Chart</p>
+            <p class="fragment">YAML files + template engine</p>
+            <p class="fragment">Massively used</p>
+          </section>
+
+          <section>
+            <h2>Helm Architecture</h2>
+            <figure>
+              <img src="img/helm-architecture.png" alt="helm architecture" style="width: 600px">
+              <figcaption style="font-style: italic; font-size: .5em">Helm Architecture - Reference: <a href="https://www.slideshare.net/alexLM/helm-application-deployment-management-for-kubernetes">Helm - Application deployment management for Kubernetes</a></figcaption>
+            </figure>
+          </section>
+
+          <section>
+            <h2>Security Issues</h2>
+            <p class="fragment">The default configuration is completely unsecure</p>
+            <p class="fragment">Cluster admin by default</p>
+            <p class="fragment">No authentication by default</p>
+            <p class="fragment">Possibility to use Tiller from the inside of the cluster</p>
+          </section>
+
+          <section>
+            <h2>Tiller is not RBAC-friendly</h2>
+            <p class="fragment">One role per Tiller instance</p>
+            <p class="fragment">Single whole-cluster-admin-privileged Tiller instances are pretty common</p>
+          </section>
+
+          <section>
+            <h2>Some Remediation Techniques</h2>
+            <p class="fragment">One Tiller instance per namespace / team / ...</p>
+            <p class="fragment">Bind to localhost only (Helm CLI tool port forwards to the remote pod)</p>
+            <p class="fragment"><a href="https://github.com/bitnami-labs/helm-crd">Helm as an add-on via CRD (experimental)</a></p>
+          </section>
+
+          <section>
+            <h2>Helm 3</h2>
+            <p class="fragment">Tillerless</p>
+            <p class="fragment">More RBAC-aware</p>
+            <p class="fragment">No release date at the moment</p>
+            <p class="fragment">In the meantime: helm template</p>
+          </section>
+        </section>
+
+        <section>
           <h2>Image Hardening</h2>
           <p class="fragment">Most Docker images run as root</p>
           <p class="fragment">Too many useless (and dangerous) packages installed</p>
