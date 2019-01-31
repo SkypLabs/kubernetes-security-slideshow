@@ -68,7 +68,7 @@
           </section>
 
           <section>
-            <h2>ETCd</h2>
+            <h2>etcd</h2>
             <p class="fragment">Store cluster's configuration and state</p>
             <p class="fragment">Service discovery</p>
             <p class="fragment">Write access = root access on the whole cluster</p>
@@ -117,6 +117,27 @@
             <p class="fragment">Bypass authentication and authorisation checks</p>
             <p class="fragment">RBAC enabled = read-only access by default</p>
             <p class="fragment">Deprecated in <a href="https://github.com/kubernetes/kubernetes/releases/tag/v1.10.0">v1.10</a> as well</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>etcd</h2>
+          </section>
+
+          <section>
+            <h2>Restrict Access to its API</h2>
+            <p class="fragment">Enable HTTPS</p>
+            <p class="fragment">Enable client authentication</p>
+            <p class="fragment">Disable self-signed certificates</p>
+            <p class="fragment">Secure peer-to-peer communications</p>
+            <p class="fragment">Restrict network communications</p>
+          </section>
+
+          <section>
+            <h2>Protect its Storage Unit</h2>
+            <p class="fragment">Encrypt data at rest</p>
+            <p class="fragment">Kubernetes secrets are stored in etcd by default</p>
           </section>
         </section>
 
