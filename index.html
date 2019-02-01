@@ -143,6 +143,34 @@
 
         <section>
           <section>
+            <h2>Kubelet</h2>
+          </section>
+
+          <section>
+            <h2>Restrict the Access to its API</h2>
+            <p class="fragment"><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/#kubelet-authentication">Disable anonymous authentication</a></p>
+            <p class="fragment"><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/#kubelet-authorization">Requests must be authorised</a></p>
+            <p class="fragment">Disable the read-only port</p>
+          </section>
+
+          <section>
+            <h2>Restrict Kubelet's Privileges</h2>
+            <p class="fragment">One Kubelet instance per worker node</p>
+            <p class="fragment">Consequently, subdivision of each instance's permissions</p>
+            <p class="fragment">Only each instance's own pods</p>
+            <p class="fragment">Only each instance's own node</p>
+          </section>
+
+          <section>
+            <h2>Secure the Communications with the Kube API</h2>
+            <p class="fragment">HTTPS enabled by default</p>
+            <p class="fragment">Bootstrapped with one-year-expiration certificates</p>
+            <p class="fragment"><a href="https://kubernetes.io/docs/tasks/tls/certificate-rotation/">Kubelet certificate rotation</a> since v1.8 (beta)</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
             <h2>Security Tools</h2>
             <p>Check the security of your cluster automatically</p>
           </section>
