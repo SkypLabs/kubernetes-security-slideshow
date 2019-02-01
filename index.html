@@ -51,6 +51,291 @@
           </p>
         </section>
 
+        <section>
+          <section>
+            <h2>Kubernetes Architecture</h2>
+              <figure>
+                <img src="img/k8s-architecture.png" alt="Kubernetes Architecture" style="width: 600px">
+                <figcaption style="font-style: italic; font-size: .5em">Kubernetes Architecture - Reference: <a href="https://x-team.com/blog/introduction-kubernetes-architecture/">X-Team</a></figcaption>
+              </figure>
+          </section>
+
+          <section>
+            <h2>API Servers</h2>
+            <p class="fragment">Entry point for managing the cluster</p>
+            <p class="fragment">One per master node</p>
+            <p class="fragment">Official client: kubectl</p>
+          </section>
+
+          <section>
+            <h2>etcd</h2>
+            <p class="fragment">Store cluster's configuration and state</p>
+            <p class="fragment">Service discovery</p>
+            <p class="fragment">Write access = root access on the whole cluster</p>
+          </section>
+
+          <section>
+            <h2>Kubelet</h2>
+            <p class="fragment">Bridge between worker nodes and the cluster logic</p>
+            <p class="fragment">One per worker node</p>
+            <p class="fragment">Takes care of managing the pods</p>
+            <p class="fragment">Has its own API</p>
+          </section>
+        </section>
+
+        <section>
+          <h2>Configuration Hardening</h2>
+          <p class="fragment">The default configuration is generally not secure</p>
+          <p class="fragment">Large number of parameters</p>
+          <p class="fragment">Easy to make a mistake</p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Kube API</h2>
+            <p>Referred as "API server" on the diagram</p>
+          </section>
+
+          <section>
+            <h2>RBAC</h2>
+            <p class="fragment">Role-Based Access Control</p>
+            <p class="fragment">Since <a href="https://github.com/kubernetes/kubernetes/releases/tag/v1.8.0">v1.8</a> released on 29th September 2017</p>
+            <p class="fragment">Entity - Role - Resource</p>
+            <p class="fragment">Least privilege</p>
+          </section>
+
+          <section>
+            <h2>Insecure Port</h2>
+            <p class="fragment">Port 8080 by default</p>
+            <p class="fragment">Bypass authentication and authorisation checks</p>
+            <p class="fragment">Deprecated in <a href="https://github.com/kubernetes/kubernetes/releases/tag/v1.10.0">v1.10</a> released on 27th March 2018</p>
+          </section>
+
+          <section>
+            <h2>Anonymous Access</h2>
+            <p class="fragment">Bypass authentication and authorisation checks</p>
+            <p class="fragment">RBAC enabled = read-only access by default</p>
+            <p class="fragment">Deprecated in <a href="https://github.com/kubernetes/kubernetes/releases/tag/v1.10.0">v1.10</a> as well</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>etcd</h2>
+          </section>
+
+          <section>
+            <h2>Restrict the Access to its API</h2>
+            <p class="fragment"><a href="https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#securing-etcd-clusters">Enable HTTPS</a></p>
+            <p class="fragment">Enable client authentication</p>
+            <p class="fragment">Secure peer-to-peer communications</p>
+            <p class="fragment">Disable self-signed certificates</p>
+            <p class="fragment">Restrict network communications</p>
+          </section>
+
+          <section>
+            <h2>Protect its Storage Unit</h2>
+            <p class="fragment"><a href="https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/">Encrypt data at rest</a></p>
+            <p class="fragment">Kubernetes secrets are stored in etcd by default</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Kubelet</h2>
+          </section>
+
+          <section>
+            <h2>Restrict the Access to its API</h2>
+            <p class="fragment"><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/#kubelet-authentication">Disable anonymous authentication</a></p>
+            <p class="fragment"><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/#kubelet-authorization">Requests must be authorised</a></p>
+            <p class="fragment">Disable the read-only port</p>
+          </section>
+
+          <section>
+            <h2>Restrict Kubelet's Privileges</h2>
+            <p class="fragment">One Kubelet instance per worker node</p>
+            <p class="fragment">Consequently, subdivision of each instance's permissions</p>
+            <p class="fragment">Only each instance's own pods</p>
+            <p class="fragment">Only each instance's own node</p>
+          </section>
+
+          <section>
+            <h2>Secure the Communications with the Kube API</h2>
+            <p class="fragment">HTTPS enabled by default</p>
+            <p class="fragment">Bootstrapped with one-year-expiration certificates</p>
+            <p class="fragment"><a href="https://kubernetes.io/docs/tasks/tls/certificate-rotation/">Kubelet certificate rotation</a> since v1.8 (beta)</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Security Tools</h2>
+            <p>Check the security of your cluster automatically</p>
+          </section>
+
+          <section>
+            <h2>kube-bench</h2>
+            <p class="fragment">Checks your configuration files</p>
+            <p class="fragment">Based on the <a href="https://www.cisecurity.org/benchmark/kubernetes/">CIS Kubernetes Benchmark</a></p>
+          </section>
+
+          <section>
+            <h2>kube-bench</h2>
+            <figure>
+              <img src="img/kube-bench.png" alt="kube-bench" style="width: 600px">
+              <figcaption style="font-style: italic; font-size: .5em">kube-bench - Reference: <a href="https://github.com/aquasecurity/kube-bench">Official GitHub repository</a></figcaption>
+            </figure>
+          </section>
+
+          <section>
+            <h2>kube-hunter</h2>
+            <p class="fragment">Vulnerability scanner</p>
+            <p class="fragment">Scan a remote cluster or from a pod</p>
+          </section>
+
+          <section>
+            <h2>kube-hunter</h2>
+            <figure>
+              <img src="img/kube-hunter.png" alt="kube-hunter" style="width: 600px">
+              <figcaption style="font-style: italic; font-size: .5em">kube-hunter - Reference: <a href="https://kube-hunter.aquasec.com/">kube-hunter's official website</a></figcaption>
+            </figure>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Helm</h2>
+            <p class="fragment">Package manager for Kubernetes</p>
+            <p class="fragment">Package = Chart</p>
+            <p class="fragment">YAML files + template engine</p>
+            <p class="fragment">Massively used</p>
+          </section>
+
+          <section>
+            <h2>Helm Architecture</h2>
+            <figure>
+              <img src="img/helm-architecture.png" alt="helm architecture" style="width: 600px">
+              <figcaption style="font-style: italic; font-size: .5em">Helm Architecture - Reference: <a href="https://www.slideshare.net/alexLM/helm-application-deployment-management-for-kubernetes">Helm - Application deployment management for Kubernetes</a></figcaption>
+            </figure>
+          </section>
+
+          <section>
+            <h2>Security Issues</h2>
+            <p class="fragment">The default configuration is completely unsecure</p>
+            <p class="fragment">Cluster admin by default</p>
+            <p class="fragment">No authentication by default</p>
+            <p class="fragment">Possibility to use Tiller from the inside of the cluster</p>
+          </section>
+
+          <section>
+            <h2>Tiller is not RBAC-friendly</h2>
+            <p class="fragment">One role per Tiller instance</p>
+            <p class="fragment">Single whole-cluster-admin-privileged Tiller instances are pretty common</p>
+          </section>
+
+          <section>
+            <h2>Some Remediation Techniques</h2>
+            <p class="fragment">One Tiller instance per namespace / team / ...</p>
+            <p class="fragment">Bind to localhost only (Helm CLI tool port forwards to the remote pod)</p>
+            <p class="fragment"><a href="https://github.com/bitnami-labs/helm-crd">Helm as an add-on via CRD (experimental)</a></p>
+          </section>
+
+          <section>
+            <h2>Helm 3</h2>
+            <p class="fragment">Tillerless</p>
+            <p class="fragment">More RBAC-aware</p>
+            <p class="fragment">No release date at the moment</p>
+            <p class="fragment">In the meantime: helm template</p>
+          </section>
+        </section>
+
+        <section>
+          <h2>Image Hardening</h2>
+          <p class="fragment">Most Docker images run as root</p>
+          <p class="fragment">Too many useless (and dangerous) packages installed</p>
+          <p class="fragment">Presence of known vulnerabilities</p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Docker Images Vulnerability Scanning</h2>
+            <p class="fragment">List of known vulnerabilities (<a href="https://cve.mitre.org/">CVEs</a>)</p>
+            <p class="fragment">Static Analysis</p>
+            <p class="fragment">Should be integrated to your CI/CD pipelines</a>
+          </section>
+
+          <section>
+            <h2>Security Scanning Tools</h2>
+            <p><a href="https://docs.docker.com/ee/dtr/user/manage-images/scan-images-for-vulnerabilities/">Docker Security Scanning</a></p>
+            <p><a href="https://github.com/coreos/clair">Clair</a></p>
+            <p><a href="https://anchore.com/">Anchore</a></p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Dockerfile Good Practices</h2>
+          </section>
+
+          <section>
+            <h2>Never Hard-code Secrets</h2>
+            <p class="fragment">Use <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes secrets</a></p>
+            <p class="fragment">Privilege passing secrets in files than via environment variables</p>
+          </section>
+
+          <section>
+            <h2>Protect Your VCS Repository</h2>
+            <p class="fragment">Secrets can be exposed via your VCS repository (Git, ...)</p>
+            <p class="fragment">Use private repositories</p>
+            <p class="fragment">Encrypt the sensitive files (ex: <a href="https://www.agwa.name/projects/git-crypt/">git-crypt</a>)</p>
+          </section>
+
+          <section>
+            <h2>Remove Unnecessary Software</h2>
+            <p class="fragment">Keep only the strict minimum in your final image</p>
+            <p class="fragment">If you need to build something: <a href="https://docs.docker.com/develop/develop-images/multistage-build/">multi-stage builds</a></p>
+            <p class="fragment">Use <a href="https://docs.docker.com/samples/library/scratch/">FROM scratch</a> when possible</p>
+          </section>
+
+          <section>
+            <h2>Version correctly your images</h2>
+            <p class="fragment"><a href="https://semver.org/">Semantic versioning</a></p>
+            <p class="fragment">Add a label with the version number</p>
+            <p class="fragment">Add tags (linked with Git tags)</p>
+          </section>
+        </section>
+
+        <section>
+          <h2>Runtime Hardening</h2>
+        </section>
+
+        <section>
+          <section>
+            <h2>Security Context</h2>
+            <p class="fragment">Used to define privileges and access control at runtime</p>
+            <p class="fragment">Example: run as non-root</p>
+          </section>
+
+          <section>
+            <h2>Linux Capabilities</h2>
+            <p class="fragment">Breaks up root privileges into smaller groups of privileges</p>
+            <p class="fragment">Example: bind to a port lower than 1024</p>
+          </section>
+
+          <section>
+            <h2>Limit Resources</h2>
+            <p class="fragment">Define a CPU and memory limit</p>
+            <p class="fragment">Lower the impact of potentiel (D)DOS</p>
+          </section>
+        </section>
+
+        <section>
+          <h2>References</h2>
+          <p><a href="https://www.aquasec.com/wiki/display/containers/Container+Security">Container Security - Aqua Security</a></p>
+          <p><a href="https://sysdig.com/blog/kubernetes-security-guide/">Kubernetes security guide - Sysdig</a></p>
+        </section>
+
       </div>
 
     </div>
