@@ -274,9 +274,60 @@
         </section>
 
         <section>
+          <section>
+            <h2>Dockerfile Good Practices</h2>
+          </section>
+
+          <section>
+            <h2>Never Hard-code Secrets</h2>
+            <p class="fragment">Use <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes secrets</a></p>
+            <p class="fragment">Privilege passing secrets in files than via environment variables</p>
+          </section>
+
+          <section>
+            <h2>Protect Your VCS Repository</h2>
+            <p class="fragment">Secrets can be exposed via your VCS repository (Git, ...)</p>
+            <p class="fragment">Use private repositories</p>
+            <p class="fragment">Encrypt the sensitive files (ex: <a href="https://www.agwa.name/projects/git-crypt/">git-crypt</a>)</p>
+          </section>
+
+          <section>
+            <h2>Remove Unnecessary Software</h2>
+            <p class="fragment">Keep only the strict minimum in your final image</p>
+            <p class="fragment">If you need to build something: <a href="https://docs.docker.com/develop/develop-images/multistage-build/">multi-stage builds</a></p>
+            <p class="fragment">Use <a href="https://docs.docker.com/samples/library/scratch/">FROM scratch</a> when possible</p>
+          </section>
+
+          <section>
+            <h2>Version correctly your images</h2>
+            <p class="fragment"><a href="https://semver.org/">Semantic versioning</a></p>
+            <p class="fragment">Add a label with the version number</p>
+            <p class="fragment">Add tags (linked with Git tags)</p>
+          </section>
+        </section>
+
+        <section>
           <h2>Runtime Hardening</h2>
-          <p>Most Docker images run as root</p>
-          <p></p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Security Context</h2>
+            <p class="fragment">Used to define privileges and access control at runtime</p>
+            <p class="fragment">Example: run as non-root</p>
+          </section>
+
+          <section>
+            <h2>Linux Capabilities</h2>
+            <p class="fragment">Breaks up root privileges into smaller groups of privileges</p>
+            <p class="fragment">Example: bind to a port lower than 1024</p>
+          </section>
+
+          <section>
+            <h2>Limit Resources</h2>
+            <p class="fragment">Define a CPU and memory limit</p>
+            <p class="fragment">Lower the impact of potentiel (D)DOS</p>
+          </section>
         </section>
 
         <section>
