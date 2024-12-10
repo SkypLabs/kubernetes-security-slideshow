@@ -337,14 +337,23 @@
 
     <script>
       // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
+      // https://revealjs.com/config/
       Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
+        // Vertical centering of slides.
         center: true,
 
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Display presentation control arrows.
+        controls: true,
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide.
+        hash: true,
+
+        // Display a presentation progress bar.
+        progress: true,
+
+        // Transition style: none/fade/slide/convex/concave/zoom.
+        transition: 'slide',
 
         // https://revealjs.com/plugins/
         plugins: [RevealHighlight, RevealMarkdown],
