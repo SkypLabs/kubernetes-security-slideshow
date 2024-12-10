@@ -2,7 +2,7 @@
   "name": "kubernetes-security-slideshow",
   "version": "0.1.0",
   "description": "Kubernetes Security, Survival Guide",
-  "repository": "git@github.com:SkypLabs/kubernetes-security-slideshow.git",
+  "repository": "https://github.com/SkypLabs/kubernetes-security-slideshow.git",
   "author": "Paul-Emmanuel Raoul <skyper@skyplabs.net>",
   "license": "CC-BY-NC-4.0",
   "private": true,
