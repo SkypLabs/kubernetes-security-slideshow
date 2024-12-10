@@ -11,6 +11,6 @@
     "reveal.js": "^5.1.0"
   },
   "scripts": {
-    "install": "./scripts/install.sh"
+    "install": "npm-scripts/install.sh"
   }
 }
