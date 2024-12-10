@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "gitgraph.js": "^1.11.4",
-    "reveal.js": "^3.6.0"
+    "reveal.js": "^5.1.0"
   },
   "scripts": {
     "install": "./scripts/install.sh"
